@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://jef78uqqfacu"]
+
+[ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_ahxfr"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="2_uwmuu"]
+[ext_resource type="Script" path="res://scripts/Timmy.gd" id="3_hthxh"]
+
+[node name="world" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ahxfr")
+
+[node name="life" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_uwmuu")
+
+[node name="Born" type="Button" parent="life"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -15.5
+offset_right = 27.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nacer"
+
+[node name="YearTimer" type="Timer" parent="life"]
+unique_name_in_owner = true
+
+[node name="Timmy" type="Node" parent="life"]
+unique_name_in_owner = true
+script = ExtResource("3_hthxh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentAge" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Current age: "
+
+[node name="AgeLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Current Life Stage" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Current Life Stage"
+
+[node name="StageLabel" type="Label" parent="HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Baby"
+
+[connection signal="pressed" from="life/Born" to="life" method="start_life"]
+[connection signal="timeout" from="life/YearTimer" to="life" method="_on_year_timeout"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5fe7nbccne0l"]
+
+[node name="Message" type="RichTextLabel"]
+size_flags_vertical = 3
+text = "Lorem Ipsum"
+fit_content = true

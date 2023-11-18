@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://doxyu1xivtj0m"]
+
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="1_ldmu5"]
+
+[node name="ProgressBar" type="ProgressBar"]
+show_percentage = false
+script = ExtResource("1_ldmu5")

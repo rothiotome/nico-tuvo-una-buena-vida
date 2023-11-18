@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c4j84kqwu1m6g"]
+
+[node name="Option" type="Button"]
+size_flags_horizontal = 4
+text = "Yup!"

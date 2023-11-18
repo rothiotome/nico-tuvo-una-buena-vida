@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LifeEvent" load_steps=4 format=3 uid="uid://fo52xu0gebrt"]
+
+[ext_resource type="Script" path="res://scripts/event_option.gd" id="1_ajbqi"]
+[ext_resource type="Script" path="res://scripts/life_event.gd" id="1_me5d3"]
+
+[sub_resource type="Resource" id="Resource_k8b17"]
+script = ExtResource("1_ajbqi")
+text = "BREATH"
+result_type = "skill"
+result = "BREATH"
+
+[resource]
+script = ExtResource("1_me5d3")
+id = "LEARN_BREATH"
+stages = Array[String](["Baby"])
+on_start = true
+yearly_chance = 100
+required = Array[String]([])
+can_repeat = false
+options = Array[ExtResource("1_ajbqi")]([SubResource("Resource_k8b17")])
