@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdpxj2mwr38iq"]
 
 [ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_s2juf"]
-[ext_resource type="Script" path="res://scenes/timed-single.gd" id="2_vqllh"]
+[ext_resource type="Script" path="res://scripts/event-popup.gd" id="2_ma3jy"]
 [ext_resource type="PackedScene" uid="uid://doxyu1xivtj0m" path="res://nodes/progress_bar.tscn" id="3_6v0ta"]
 
 [node name="Panel" type="PanelContainer"]
@@ -10,7 +10,7 @@ offset_top = 367.0
 offset_right = 714.0
 offset_bottom = 448.0
 theme = ExtResource("1_s2juf")
-script = ExtResource("2_vqllh")
+script = ExtResource("2_ma3jy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

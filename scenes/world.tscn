@@ -21,6 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_uwmuu")
+life_expectancy = null
+year_duration = null
 
 [node name="Born" type="Button" parent="life"]
 layout_mode = 1
@@ -58,7 +60,7 @@ layout_mode = 2
 
 [node name="CurrentAge" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Current age: "
+text = "Edad actual: "
 
 [node name="AgeLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -70,7 +72,7 @@ layout_mode = 2
 
 [node name="Current Life Stage" type="Label" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Current Life Stage"
+text = "Etapa vital: "
 
 [node name="StageLabel" type="Label" parent="HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
