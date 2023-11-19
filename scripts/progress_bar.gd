@@ -1,11 +1,12 @@
-extends Node
+extends ProgressBar
 
+var timer: SceneTreeTimer
+var start_time: int
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func initialize(temp: int) -> Signal:
+	start_time = temp
+	timer = get_tree().create_timer(temp)
+	return timer.timeout
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _process(_delta):
+	value = (timer.time_left / start_time) * 100

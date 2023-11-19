@@ -13,6 +13,7 @@ config_version=5
 config/name="The Shortness of Life"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -26,3 +27,7 @@ gdscript/warnings/unsafe_method_access=1
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 gdscript/warnings/return_value_discarded=1
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.000339935, 0.114925, 0.201185, 1)

@@ -1,3 +1,19 @@
-[gd_resource type="Theme" format=3 uid="uid://d1b4h4itqfdyx"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://d1b4h4itqfdyx"]
+
+[ext_resource type="StyleBox" uid="uid://w6fmmbjv8ish" path="res://themes/panel_bg.tres" id="1_3jr5b"]
+[ext_resource type="StyleBox" uid="uid://4sxoj8ixp0c6" path="res://themes/base_button.tres" id="1_80dcc"]
+[ext_resource type="FontFile" uid="uid://b2rdrpuqtpgc7" path="res://fonts/Comfortaa/static/Comfortaa-SemiBold.ttf" id="3_u2y2v"]
 
 [resource]
+default_font = ExtResource("3_u2y2v")
+default_font_size = 25
+Button/styles/hover = ExtResource("1_80dcc")
+Button/styles/normal = ExtResource("1_80dcc")
+Button/styles/pressed = ExtResource("1_80dcc")
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+Panel/styles/panel = ExtResource("1_3jr5b")
+RichTextLabel/colors/default_color = Color(0.917647, 0.901961, 0.827451, 1)
+VBoxContainer/constants/separation = 10

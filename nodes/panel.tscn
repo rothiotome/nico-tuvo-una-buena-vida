@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdpxj2mwr38iq"]
+[gd_scene load_steps=8 format=3 uid="uid://cdpxj2mwr38iq"]
 
 [ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_s2juf"]
+[ext_resource type="StyleBox" uid="uid://w6fmmbjv8ish" path="res://themes/panel_bg.tres" id="2_77qdg"]
 [ext_resource type="Script" path="res://scripts/event-popup.gd" id="2_ma3jy"]
 [ext_resource type="PackedScene" uid="uid://doxyu1xivtj0m" path="res://nodes/progress_bar.tscn" id="3_6v0ta"]
 [ext_resource type="PackedScene" uid="uid://c5fe7nbccne0l" path="res://nodes/message.tscn" id="4_6t0xl"]
@@ -13,6 +14,7 @@ offset_top = 367.0
 offset_right = 714.0
 offset_bottom = 448.0
 theme = ExtResource("1_s2juf")
+theme_override_styles/panel = ExtResource("2_77qdg")
 script = ExtResource("2_ma3jy")
 progress_bar_node = ExtResource("3_6v0ta")
 message_node = ExtResource("4_6t0xl")
