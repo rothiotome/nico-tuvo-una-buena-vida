@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_ahxfr"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="2_uwmuu"]
-[ext_resource type="Script" path="res://scripts/Timmy.gd" id="3_hthxh"]
+[ext_resource type="PackedScene" uid="uid://cdpxj2mwr38iq" path="res://nodes/panel.tscn" id="3_lbdxp"]
 
 [node name="world" type="Control"]
 layout_mode = 3
@@ -21,8 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_uwmuu")
-life_expectancy = null
-year_duration = null
+popup_panel_node = ExtResource("3_lbdxp")
 
 [node name="Born" type="Button" parent="life"]
 layout_mode = 1
@@ -41,10 +40,6 @@ text = "Nacer"
 
 [node name="YearTimer" type="Timer" parent="life"]
 unique_name_in_owner = true
-
-[node name="Timmy" type="Node" parent="life"]
-unique_name_in_owner = true
-script = ExtResource("3_hthxh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -80,4 +75,5 @@ layout_mode = 2
 text = "Baby"
 
 [connection signal="pressed" from="life/Born" to="life" method="start_life"]
+[connection signal="pressed" from="life/Born" to="life/Born" method="queue_free"]
 [connection signal="timeout" from="life/YearTimer" to="life" method="_on_year_timeout"]

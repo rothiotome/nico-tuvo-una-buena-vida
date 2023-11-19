@@ -4,7 +4,7 @@ extends Control
 @export var year_duration: float = 1
 var current_age:int = -1
 
-@export var panel_node: EventPopUp
+@export var popup_panel_node: PackedScene
 
 var life_stages_order = ["Bebé", "Niño", "Adolescente", "Joven Adulto", "Adulto", "Anciano"]
 
@@ -20,19 +20,14 @@ var life_stage: Dictionary = {
 @onready var year_timer: Timer = %YearTimer
 @onready var age_label: Label = %AgeLabel
 @onready var stage_label: Label = %StageLabel
-@onready var timmy: Timmy = %Timmy
-
 
 func start_life():
 	print("¡Has nacido!")
 	year_timer.start(year_duration)
+	Timmy.fire_event.connect(fire_event)
 	
 func on_max_life_expectancy_reached():
 	pass
-	
-func fire_event(event: Dictionary):
-	
-	
 
 func _on_year_timeout():
 	new_year()
@@ -46,7 +41,7 @@ func new_year():
 		
 	age_label.text = str(current_age)
 	stage_label.text = stage_check["stage"]
-	timmy.birthday(stage_check["stage"], current_age)
+	Timmy.birthday(stage_check["stage"], current_age)
 
 func get_current_stage():
 	var current_stage = "Bebé"
@@ -63,3 +58,16 @@ func check_stage_change(age: int) -> Dictionary:
 			result["just_reached"] = (age == life_stage[stage])
 			result["stage"] = stage
 	return result
+
+func fire_event(event: Dictionary):
+	var panel = popup_panel_node.instantiate() as EventPopup
+	panel.initialize(event)
+	add_child(panel)
+	await get_tree().process_frame
+	var panel_size = panel.get_size()
+	var screen_size = get_viewport().get_visible_rect().size
+	randomize()
+	var random_position = Vector2(
+		floorf(randi_range(0, screen_size.x - panel_size.x)),
+		floorf(randi_range(0, screen_size.y - panel_size.y)))
+	panel.set_position(random_position)

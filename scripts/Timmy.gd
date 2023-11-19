@@ -1,7 +1,5 @@
 extends Node
 
-class_name Timmy
-
 var current_stage: String
 
 var life_log: String
@@ -13,6 +11,10 @@ var partner_name: String
 var events_file = "res://data/life_events.json"
 
 var life_events: Array
+
+var popup_panel_node = preload("res://nodes/panel.tscn")
+
+signal fire_event(event: Dictionary)
 
 func _ready():
 	life_events = load_events_from_file(events_file)
@@ -34,24 +36,29 @@ func load_events_from_file(file_path: String):
 
 func birthday(new_stage: String, _current_age: int):
 	current_stage = new_stage
-	for event in life_events:
+	for event in life_events as Array:
 		if !event["stages"].has(current_stage): continue
-		for required_effect in event["required"]:
-			var effect = effects.get(required_effect)
-			if effect == null: continue
-			if effects[effect] < event["required"][required_effect]: continue
+		if !has_required(event["required"]): continue
 		
 		if event["yearly_chance"] < 100:
 			randomize()
 			if randi() % 100 < event["yearly_chance"]: continue
 			
-		fire_event(event)
+		fire_event.emit(event)
 		life_events.erase(event)
-		break
+		return
 		
-func add_response()
-		
-func fire_event(event: Dictionary):
+func has_required(required_effects: Dictionary) -> bool:
+	for req in required_effects:
+		var effect = effects.get(req)
+		if effect == null: return false
+		if effects[req] < required_effects[req]: return false
+	return true
 	
-	print(event["text"])
-	
+func on_response(button_pressed: Button):
+	print(button_pressed.text)
+	for effect in button_pressed.get_meta_list():
+		if effects.has(effect) and effects[effect] is int:
+			effects[effect] = effects[effect] + button_pressed.get_meta(effect)
+		else:
+			effects[effect] = button_pressed.get_meta(effect)

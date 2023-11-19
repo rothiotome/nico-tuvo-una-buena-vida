@@ -6,12 +6,12 @@
             "Niño"
         ],
         "yearly_chance": 20,
-        "required": [],
+        "required": {},
         "duration": -1,
         "options": [
             {
                 "text": "M... ma-má",
-                "required": [],
+                "required": {},
                 "effects": {
                     "TALK": 1,
                     "PREFERENCE_MOM": 1,
@@ -21,7 +21,7 @@
             },
             {
                 "text": "P... papá",
-                "required": [],
+                "required": {},
                 "effects": {
                     "TALK": 1,
                     "PREFERENCE_MOM": -1,
@@ -31,7 +31,7 @@
             },
             {
                 "text": "M... ¡ESPAÑA!",
-                "required": [],
+                "required": {},
                 "effects": {
                     "TALK": 1,
                     "PREFERENCE_MOM": -1,
@@ -50,16 +50,14 @@
             "Joven Adulto"
         ],
         "yearly_chance": 10,
-        "required": [
-            {
-                "TALK": 1
-            }
-        ],
+        "required": {
+            "TALK": 1
+        },
         "duration": 2,
         "options": [
             {
                 "text": "League of Legends",
-                "required": [],
+                "required": {},
                 "effects": {
                     "NERD": 10,
                     "LOVE": -10,
@@ -68,7 +66,7 @@
             },
             {
                 "text": "Carlos",
-                "required": [],
+                "required": {},
                 "effects": {
                     "BOYFRIEND": 1,
                     "LOVE": 1,
@@ -78,7 +76,7 @@
             },
             {
                 "text": "María",
-                "required": [],
+                "required": {},
                 "effects": {
                     "GIRLFRIEND": 1,
                     "LOVE": 1,
@@ -89,47 +87,17 @@
         ]
     },
     {
-        "text": "Ves una luz que te invita a a ir hacia ella",
-        "stages": [
-            "Bebé"
-        ],
-        "yearly_chance": 100,
-        "required": [],
-        "duration": 1,
-        "options": [
-            {
-                "text": "Ir a la luz",
-                "effects": {
-                    "LOG": "Naciste una mañana de diciembre. Tu madre dice que fue un parto fácil. "
-                }
-            },
-            {
-                "text": "Hacerte de rogar",
-                "effects": {
-                    "LOG": "Naciste una noche de enero. Fue un parto complicado, pero al final salió todo bien. "
-                }
-            },
-            {
-                "text": "Girarte para no salir",
-                "effects": {
-                    "DEAD": 1,
-                    "LOG": "Tuviste una vida corta. Tan corta que no supiste ni nacer."
-                }
-            }
-        ]
-    },
-    {
         "text": "¿Qué quieres para tu cumpleaños?",
         "stages": [
             "Adolescente"
         ],
         "yearly_chance": 30,
-        "required": [],
+        "required": {},
         "duration": 2,
         "options": [
             {
                 "text": "Una moto",
-                "required": [],
+                "required": {},
                 "effects": {
                     "MOTO": 1,
                     "LOG": "Te regalaron una moto a los %d años. "
@@ -137,7 +105,7 @@
             },
             {
                 "text": "Una cámara para hacer streams",
-                "required": [],
+                "required": {},
                 "effects": {
                     "STREAMER": 1,
                     "LOG": "Comenzaste a hacer streams a los %d años. "
@@ -145,13 +113,11 @@
             },
             {
                 "text": "Una bandera de ESPAÑA",
-                "required": [
-                    {
-                        "ESPAÑA": 10
-                    }
-                ],
+                "required": {
+                    "PREFERENCE_SPAIN": 10
+                },
                 "effects": {
-                    "ESPAÑA": 10,
+                    "PREFERENCE_SPAIN": 10,
                     "LOG": "Decoraste tu habitación con una bandera de ESPAÑA a los %d años"
                 }
             }

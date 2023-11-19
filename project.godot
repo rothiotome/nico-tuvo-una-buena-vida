@@ -15,6 +15,10 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Timmy="*res://scripts/Timmy.gd"
+
 [debug]
 
 gdscript/warnings/unsafe_property_access=1

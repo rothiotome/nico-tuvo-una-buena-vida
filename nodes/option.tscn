@@ -2,4 +2,4 @@
 
 [node name="Option" type="Button"]
 size_flags_horizontal = 4
-text = "Yup!"
+mouse_default_cursor_shape = 2
