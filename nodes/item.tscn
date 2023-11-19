@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgx3gexldg4wu"]
+
+[ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_0va6p"]
+[ext_resource type="StyleBox" uid="uid://w6fmmbjv8ish" path="res://themes/panel_bg.tres" id="2_tfptc"]
+[ext_resource type="Script" path="res://scripts/item_popup.gd" id="3_a4xii"]
+[ext_resource type="PackedScene" uid="uid://c5fe7nbccne0l" path="res://nodes/message.tscn" id="5_pllu2"]
+
+[node name="Panel" type="PanelContainer"]
+offset_left = 555.0
+offset_top = 367.0
+offset_right = 714.0
+offset_bottom = 448.0
+theme = ExtResource("1_0va6p")
+theme_override_styles/panel = ExtResource("2_tfptc")
+script = ExtResource("3_a4xii")
+message_node = ExtResource("5_pllu2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Window" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2

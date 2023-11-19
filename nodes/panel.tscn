@@ -2,11 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_s2juf"]
 [ext_resource type="StyleBox" uid="uid://w6fmmbjv8ish" path="res://themes/panel_bg.tres" id="2_77qdg"]
-[ext_resource type="Script" path="res://scripts/event-popup.gd" id="2_ma3jy"]
-[ext_resource type="PackedScene" uid="uid://doxyu1xivtj0m" path="res://nodes/progress_bar.tscn" id="3_6v0ta"]
-[ext_resource type="PackedScene" uid="uid://c5fe7nbccne0l" path="res://nodes/message.tscn" id="4_6t0xl"]
-[ext_resource type="PackedScene" uid="uid://c4j84kqwu1m6g" path="res://nodes/option.tscn" id="5_0x0sn"]
-[ext_resource type="PackedScene" uid="uid://bptkncvt67dld" path="res://nodes/options.tscn" id="5_uhisx"]
+[ext_resource type="Script" path="res://scripts/event_popup.gd" id="3_6n8ei"]
+[ext_resource type="PackedScene" uid="uid://doxyu1xivtj0m" path="res://nodes/progress_bar.tscn" id="4_abnkb"]
+[ext_resource type="PackedScene" uid="uid://bptkncvt67dld" path="res://nodes/options.tscn" id="5_6ky6h"]
+[ext_resource type="PackedScene" uid="uid://c4j84kqwu1m6g" path="res://nodes/option.tscn" id="6_nkry5"]
+[ext_resource type="PackedScene" uid="uid://c5fe7nbccne0l" path="res://nodes/message.tscn" id="7_001hl"]
 
 [node name="Panel" type="PanelContainer"]
 offset_left = 555.0
@@ -15,11 +15,11 @@ offset_right = 714.0
 offset_bottom = 448.0
 theme = ExtResource("1_s2juf")
 theme_override_styles/panel = ExtResource("2_77qdg")
-script = ExtResource("2_ma3jy")
-progress_bar_node = ExtResource("3_6v0ta")
-message_node = ExtResource("4_6t0xl")
-options_node = ExtResource("5_uhisx")
-option_node = ExtResource("5_0x0sn")
+script = ExtResource("3_6n8ei")
+progress_bar_node = ExtResource("4_abnkb")
+options_node = ExtResource("5_6ky6h")
+option_node = ExtResource("6_nkry5")
+message_node = ExtResource("7_001hl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

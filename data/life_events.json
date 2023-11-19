@@ -16,7 +16,7 @@
                     "TALK": 1,
                     "PREFERENCE_MOM": 1,
                     "PREFERENCE_DAD": -1,
-                    "LOG": "Tu primera palabra fue mamá a los %d años. "
+                    "LOG": "Tu primera palabra fue mamá a los %d años"
                 }
             },
             {
@@ -26,7 +26,8 @@
                     "TALK": 1,
                     "PREFERENCE_MOM": -1,
                     "PREFERENCE_DAD": 1,
-                    "LOG": "Tu primera palabra fue papá a los %d años. "
+
+                    "LOG": "Tu primera palabra fue papá a los %d años"
                 }
             },
             {
@@ -37,7 +38,7 @@
                     "PREFERENCE_MOM": -1,
                     "PREFERENCE_DAD": -1,
                     "PREFERENCE_SPAIN": 10,
-                    "LOG": "Tu primera palabra fue ESPAÑA a los %d años. "
+                    "LOG": "Tu primera palabra fue ESPAÑA a los %d años"
                 }
             }
         ]
@@ -61,7 +62,7 @@
                 "effects": {
                     "NERD": 10,
                     "LOVE": -10,
-                    "LOG": "Aún recuerdas el día que conseguiste subir a platino aquél 14 de Febrero a los %d años. "
+                    "LOG": "Aún recuerdas el día que conseguiste subir a platino aquél 14 de Febrero a los %d años"
                 }
             },
             {
@@ -70,8 +71,8 @@
                 "effects": {
                     "BOYFRIEND": 1,
                     "LOVE": 1,
-                    "PARTNER": "Carlos",
-                    "LOG": "Aún recuerdas el día tan romántico que pasaste con Carlos a los %d años. "
+                    "PARTNER": "Tu novio Carlos",
+                    "LOG": "Aún recuerdas el día tan romántico que pasaste con Carlos a los %d años"
                 }
             },
             {
@@ -80,8 +81,8 @@
                 "effects": {
                     "GIRLFRIEND": 1,
                     "LOVE": 1,
-                    "PARTNER": "María",
-                    "LOG": "Aún recuerdas el día tan romántico que pasaste con María a los %d años. "
+                    "PARTNER": "Tu novia María",
+                    "LOG": "Aún recuerdas el día tan romántico que pasaste con María a los %d años"
                 }
             }
         ]
@@ -99,16 +100,16 @@
                 "text": "Una moto",
                 "required": {},
                 "effects": {
-                    "MOTO": 1,
-                    "LOG": "Te regalaron una moto a los %d años. "
+                    "MOTO": "Una moto",
+                    "LOG": "Te regalaron una moto a los %d años"
                 }
             },
             {
-                "text": "Una cámara para hacer streams",
+                "text": "Un kit de dibujo",
                 "required": {},
                 "effects": {
-                    "STREAMER": 1,
-                    "LOG": "Comenzaste a hacer streams a los %d años. "
+                    "PAINT": "Un Kit de dibujo",
+                    "LOG": "Te regalaron un kit de dibujo a los %d años"
                 }
             },
             {
@@ -118,9 +119,102 @@
                 },
                 "effects": {
                     "PREFERENCE_SPAIN": 10,
+                    "SPAIN_FLAG": "Una bandera de ESPAÑA",
                     "LOG": "Decoraste tu habitación con una bandera de ESPAÑA a los %d años"
                 }
             }
         ]
+    },
+    {
+        "text": "Te ofrecen un cigarro",
+        "stages": [
+            "Adolescente", "Joven Adulto"
+        ],
+        "yearly_chance": 10,
+        "required": {},
+        "duration": 3,
+        "options": [
+            {
+                "text": "Aceptas",
+                "required": {},
+                "effects": {
+                    "FUMADOR": "Dependencia a la nicotina",
+                    "HEALTH": -10,
+                    "LOG": "A los %d años, empezaste a fumar para fardar delante de tus compañeras"
+                }
+            },
+            {
+                "text": "Rechazas",
+                "required": {},
+                "effects": {
+                    "HEALTH": 10
+                }
+            }
+        ]
+    },
+    {
+        "text": "El médico te dice que deberías dejar de fumar",
+        "stages": [
+            "Joven Adulto", "Adulto", "Anciano"
+        ],
+        "yearly_chance": 5,
+        "required": {"FUMADOR": 1},
+        "duration": 4,
+        "options": [
+            {
+                "text": "Dejar de fumar",
+                "required": {},
+                "effects": {
+                    "FUMADOR": false,
+                    "HEALTH": 5,
+                    "LOG": "Dejaste de fumar a los %d años por recomendación de tu médico"
+                }
+            },
+            {
+                "text": "Te niegas",
+                "required": {},
+                "effects": {
+                    "HEALTH": -10
+                }
+            }
+        ]
+    },
+    {
+        "text": "Recibes un mensaje: \"tenemos que hablar\"",
+        "stages": [
+            "Joven Adulto"
+        ],
+        "yearly_chance": 10,
+        "required": {"PARTNER": 1},
+        "duration": 4,
+        "options": [
+            {
+                "text": "Ignorar el mensaje",
+                "required": {},
+                "effects": {
+                    "PARTNER": false,
+                    "LOG": "Tu primer romance terminó a los %d años después de ignorar su mensaje de movil. Nunca volviste a tener contacto"
+                }
+            },
+            {
+                "text": "Hablar las cosas",
+                "required": {},
+                "effects": {
+                    "LOG": "Aunque tuviste problemas con tu pareja alrededor de los %d años, conseguiste arreglar las cosas"
+                }
+            },
+            {
+                "text": "Responder con una bandera de ESPAÑA",
+                "required": {
+                    "PREFERENCE_SPAIN": 10
+                },
+                "effects": {
+                    "PREFERENCE_SPAIN": 10,
+                    "PARTNER": false,
+                    "LOG": "Tu pasión por ESPAÑA hizo que tu pareja te dejara a los %d años. Aún no entiendes qué hiciste mal"
+                }
+            }
+        ]
     }
+
 ]

@@ -1,9 +1,8 @@
-extends PanelContainer
+extends BasePopup
 
 class_name EventPopup
 
 @export var progress_bar_node: PackedScene
-@export var message_node: PackedScene
 @export var options_node: PackedScene
 @export var option_node: PackedScene
 
@@ -11,15 +10,12 @@ class_name EventPopup
 
 var event: Dictionary
 
-var dragging: bool
-var offset: Vector2
-
-func initialize(new_event: Dictionary):
+func initialize(new_event):
 	event = new_event
 
 func _ready():
-	var message = message_node.instantiate() as RichTextLabel
-	message.add_text(event["text"])
+	var message = message_node.instantiate() as Label
+	message.text = (event["text"])
 	window.add_child(message)
 	
 	if !event["options"].is_empty():
@@ -38,29 +34,6 @@ func _ready():
 		var progress_bar = progress_bar_node.instantiate() as ProgressBar
 		window.add_child(progress_bar)
 		progress_bar.initialize(event["duration"]).connect(on_timeout)
-
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				if get_viewport_rect().has_point(event.global_position):
-					grab_focus()
-					top_level = true
-					offset = event.global_position - position
-					dragging = true
-					move_to_front()
-			else:
-				move_to_front()
-				top_level = false
-				release_focus()
-				dragging = false
-
-	elif event is InputEventMouseMotion:
-		if dragging:
-			var new_position = event.global_position - offset
-			new_position.x = clamp(new_position.x, 0, get_viewport_rect().size.x - size.x)
-			new_position.y = clamp(new_position.y, 0, get_viewport_rect().size.y - size.y)
-			position = new_position
 	
 func on_timeout():
 	queue_free()

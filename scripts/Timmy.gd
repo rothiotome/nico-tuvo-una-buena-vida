@@ -1,8 +1,9 @@
 extends Node
 
 var current_stage: String
+var current_age: int
 
-var life_log: String
+var life_log: PackedStringArray
 
 var effects: Dictionary
 
@@ -12,9 +13,9 @@ var events_file = "res://data/life_events.json"
 
 var life_events: Array
 
-var popup_panel_node = preload("res://nodes/panel.tscn")
-
 signal fire_event(event: Dictionary)
+signal add_item(id: String, desc: String)
+signal remove_item(id: String)
 
 func _ready():
 	life_events = load_events_from_file(events_file)
@@ -34,8 +35,9 @@ func load_events_from_file(file_path: String):
 	else:
 		print("An error occurred when trying to open the file %s" % file_path)
 
-func birthday(new_stage: String, _current_age: int):
+func birthday(new_stage: String, new_age: int):
 	current_stage = new_stage
+	current_age = new_age
 	for event in life_events as Array:
 		if !event["stages"].has(current_stage): continue
 		if !has_required(event["required"]): continue
@@ -49,16 +51,36 @@ func birthday(new_stage: String, _current_age: int):
 		return
 		
 func has_required(required_effects: Dictionary) -> bool:
+	
 	for req in required_effects:
-		var effect = effects.get(req)
-		if effect == null: return false
-		if effects[req] < required_effects[req]: return false
+		if !effects.has(req): return false
+		if effects[req] is float and effects[req] < required_effects[req]: return false
 	return true
 	
 func on_response(button_pressed: Button):
-	print(button_pressed.text)
 	for effect in button_pressed.get_meta_list():
-		if effects.has(effect) and effects[effect] is int:
-			effects[effect] = effects[effect] + button_pressed.get_meta(effect)
+		var value = button_pressed.get_meta(effect)
+		if value is float:
+			if effects.has(effect):
+				effects[effect] = effects[effect] + value
+			else:
+				effects[effect] = value
 		else:
-			effects[effect] = button_pressed.get_meta(effect)
+			if effect != "LOG":
+				effects[effect] = value
+				if value is bool:
+					clear_item(effect)
+				else:
+					store_item(effect, value)
+			else: life_log.append(value % current_age)
+
+func store_item(id: String, desc: String):
+	add_item.emit(id, desc)
+	
+func clear_item(id: String):
+	effects.erase(id)
+	remove_item.emit(id)
+
+func life_expectancy_reached():
+	life_log.append("Y moriste a la edad de %d años" % current_age)
+	print(". ".join(life_log))

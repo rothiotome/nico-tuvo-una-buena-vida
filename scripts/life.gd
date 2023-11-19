@@ -4,7 +4,8 @@ extends Control
 @export var year_duration: float = 1
 var current_age:int = -1
 
-@export var popup_panel_node: PackedScene
+@export var popup_event_node: PackedScene
+@export var popup_item_node: PackedScene
 
 var life_stages_order = ["Bebé", "Niño", "Adolescente", "Joven Adulto", "Adulto", "Anciano"]
 
@@ -21,18 +22,25 @@ var life_stage: Dictionary = {
 @onready var age_label: Label = %AgeLabel
 @onready var stage_label: Label = %StageLabel
 
+var inventory: Dictionary = {}
+
 func start_life():
 	print("¡Has nacido!")
 	year_timer.start(year_duration)
 	Timmy.fire_event.connect(fire_event)
+	Timmy.add_item.connect(add_item)
+	Timmy.remove_item.connect(remove_item)
 	
 func on_max_life_expectancy_reached():
-	pass
+	Timmy.life_expectancy_reached()
 
 func _on_year_timeout():
 	new_year()
 	print("Ha pasado un año. Edad %d" % current_age)
-
+	if current_age >= life_expectancy:
+		year_timer.stop()
+		on_max_life_expectancy_reached()
+		
 func new_year():
 	current_age = current_age + 1
 	var stage_check = check_stage_change(current_age)
@@ -60,14 +68,28 @@ func check_stage_change(age: int) -> Dictionary:
 	return result
 
 func fire_event(event: Dictionary):
-	var panel = popup_panel_node.instantiate() as EventPopup
+	var panel = popup_event_node.instantiate() as EventPopup
 	panel.initialize(event)
-	add_child(panel)
+	add_and_move_child(panel)
+	
+
+func add_item(id: String, desc: String):
+	var item = popup_item_node.instantiate() as ItemPopup
+	item.initialize(desc)
+	inventory[id] = item
+	add_and_move_child(item)
+	
+func remove_item(id: String):
+	inventory[id].queue_free()
+	inventory.erase(id)
+	
+func add_and_move_child(node: BasePopup):
+	add_child(node)
 	await get_tree().process_frame
-	var panel_size = panel.get_size()
+	var node_size = node.get_size()
 	var screen_size = get_viewport().get_visible_rect().size
 	randomize()
 	var random_position = Vector2(
-		floorf(randi_range(0, screen_size.x - panel_size.x)),
-		floorf(randi_range(0, screen_size.y - panel_size.y)))
-	panel.set_position(random_position)
+		floorf(randi_range(0, screen_size.x - node_size.x)),
+		floorf(randi_range(0, screen_size.y - node_size.y)))
+	node.set_position(random_position)
