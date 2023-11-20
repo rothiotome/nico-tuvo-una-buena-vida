@@ -53,7 +53,7 @@
         "required": {
             "TALK": 1
         },
-        "duration": 2,
+        "duration": 4,
         "options": [
             {
                 "text": "League of Legends",
@@ -138,7 +138,7 @@
                 "effects": {
                     "SMOKER": "Dependencia a la nicotina",
                     "HEALTH": -10,
-                    "LOG": "A los %d años, empezó a fumar para fardar delante de tus compañeras"
+                    "LOG": "A los %d años, empezó a fumar para fardar delante de sus compañeras"
                 }
             },
             {
@@ -200,7 +200,7 @@
                 "text": "Hablar las cosas",
                 "required": {},
                 "effects": {
-                    "LOG": "Aunque tuvo problemas con tu pareja al cumplir los %d, consiguió arreglar las cosas hablando"
+                    "LOG": "Aunque tuvo problemas con su pareja al cumplir los %d, consiguió arreglar las cosas hablando"
                 }
             },
             {
@@ -255,7 +255,7 @@
                 },
                 "effects": {
                     "BABY_WAITING": "Papeles de adopción",
-                    "LOG": "Decidisteis tener un bebé a los %d años"
+                    "LOG": "Él y su pareja decidieron tener un bebé a los %d años"
                 }
             },
             {
@@ -265,7 +265,7 @@
                 },
                 "effects": {
                     "BABY_WAITING": "Un bebé en camino",
-                    "LOG": "Decidisteis tener un bebé a los %d años"
+                    "LOG": "Él y su pareja decidieron tener un bebé a los %d años"
                 }
             },
             {
@@ -320,7 +320,7 @@
                 "effects": {
                     "BABY_WAITING": false,
                     "SON": "tu hijo Francisco",
-                    "LOG": "Francisco llegó a su vida cuando tenía %d años. Qué buen nombre eligió, la verdad"
+                    "LOG": "Su hijo Francisco llegó a su vida cuando tenía %d años. Qué buen nombre eligió, la verdad"
                 }
             },
             {
@@ -331,7 +331,7 @@
                 "effects": {
                     "BABY_WAITING": false,
                     "SON": "Tu hijo Luke",
-                    "LOG": "Luke llegó a su vida cuando tenía %d años. Siempre hablaba de esos primeros años con mucho cariño: las peleas de sable laser y las maratones de la trilogía original los sábados por la noche"
+                    "LOG": "Su hijo Luke llegó a su vida cuando tenía %d años. Siempre hablaba de esos primeros años con mucho cariño: las peleas de sable laser y las maratones de la trilogía original los sábados por la noche"
                 }
             },
             {
@@ -349,7 +349,7 @@
                 "effects": {
                     "BABY_WAITING": false,
                     "SON": "Tu hijo Dani",
-                    "LOG": "Dani llegó a su vida cuando tenía %d años. Menudas noches de no dormir, pobrecito"
+                    "LOG": "Su hijo Dani llegó a su vida cuando tenía %d años. Menudas noches de no dormir, pobrecito"
                 }
             }
         ]
@@ -500,6 +500,108 @@
                 "effects": {
                     "CAT": "Un gatito",
                     "LOG": "Adoptó otro gatito a los %d años"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Tienes un examen mañana",
+        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "yearly_chance": 5,
+        "required": {},
+        "duration": 2,
+        "options": [
+            {
+                "text": "Estudiar duro",
+                "required": {},
+                "effects": {
+                    "STUDY_HARD": 1,
+                    "LOG": "Era una persona bastante estudiosa. Si tenía un exámen al día siguiente, era imposible sacarlo de casa"
+                }
+            },
+            {
+                "text": "Fiesta con amigos",
+                "required": {"TALK": 1},
+                "effects": {
+                    "PARTY": 1,
+                    "LOG": "Era una persona bien fiestera. Si le decías: ¿'te vienes de fiesta'? siempre contestaba: la que te va a dar esta con el cubata ya en la mano"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Tienes que hacer un trabajo para la semana que viene",
+        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "yearly_chance": 3,
+        "required": {},
+        "duration": 3,
+        "options": [
+            {
+                "text": "Empezar One Piece",
+                "required": {"NERD": 10},
+                "effects": {
+                    "NERD": 10,
+                    "ONCE_PIECE": 1,
+                    "LOG": "Comenzó a ver One Piece cuando tenía %d años. Pero no la versión reducida, no, los capitulos enteros con su relleno. Menuda turra nos daba"
+                }
+            },
+            {
+                "text": "Trabajar en el proyecto",
+                "required": {},
+                "effects": {
+                    "STUDY_HARD": 1,
+                    "LOG": "Solía trabajar duro siempre que tenía un proyecto en clase"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Estas al día con One Piece, ¿Cómo rellenarás tu tiempo ahora?",
+        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "yearly_chance": 3,
+        "required": {"ONE_PIECE": 1},
+        "duration": 3,
+        "options": [
+            {
+                "text": "Empezar One Piece de nuevo",
+                "required": {},
+                "effects": {
+                    "NERD": 10,
+                    "ONCE_PIECE": 1,
+                    "LOG": "¿Os he dicho ya que le flipaba One Piece? tanto que cuando se puso al día con la serie la comenzó de nuevo. Fans de Once Piece, en serio, ¿estáis bien?"
+                }
+            },
+            {
+                "text": "Leer el manga",
+                "required": {},
+                "effects": {
+                    "NERD": 10,
+                    "LOG": "¿Os he dicho ya que le flipaba One Piece? tanto que cuando se puso al día con la serie se empezó el manga. Fans de Once Piece, en serio, ¿estáis bien?"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Puedes copiar en el examen",
+        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "yearly_chance": 10,
+        "required": {},
+        "duration": 2,
+        "options": [
+            {
+                "text": "Copiar",
+                "required": {},
+                "effects": {
+                    "CHEAT": 1,
+                    "STUDY_HARD": -10,
+                    "LOG": "Cuando tenía %d años, le pillaron copiando. Desde ese momento supimos que lo de estudiar no era lo suyo"
+                }
+            },
+            {
+                "text": "Confiar en tus conocimientos",
+                "required": {"STUDY_HARD": 2},
+                "effects": {
+                    "LOG": "Los días de estudio tuvieron resultado, siempre sacó muy buenas notas"
                 }
             }
         ]

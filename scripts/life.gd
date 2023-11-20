@@ -86,7 +86,7 @@ func remove_item(id: String):
 	if inventory.has(id):
 		for i in inventory[id]:
 			i.queue_free()
-			inventory.erase(i)
+			inventory.erase(id)
 	
 func add_and_move_child(node: BasePopup):
 	add_child(node)
