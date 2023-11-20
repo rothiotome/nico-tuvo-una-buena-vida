@@ -6,7 +6,7 @@ var item
 
 @onready var window = $MarginContainer/Window
 
-func initialize(new_item):
+func initialize(new_item, timmy: Timmy):
 	item = new_item
 	
 func _ready():

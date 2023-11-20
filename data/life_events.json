@@ -1,6 +1,6 @@
 [
     {
-        "text": "Parece que estás preparado para hablar. ¿Cuál va a ser tu primera palabra?",
+        "text": "Parece que estás preparado para hablar. \n¿Cuál va a ser tu primera palabra?",
         "stages": [
             "Bebé",
             "Niño"
@@ -16,7 +16,7 @@
                     "TALK": 1,
                     "PREFERENCE_MOM": 1,
                     "PREFERENCE_DAD": -1,
-                    "LOG": "Su primera palabra fue mamá a los %d años"
+                    "LOG": "Al cumplir %d, dijo su primera palabra: Mamá"
                 }
             },
             {
@@ -26,7 +26,7 @@
                     "TALK": 1,
                     "PREFERENCE_MOM": -1,
                     "PREFERENCE_DAD": 1,
-                    "LOG": "Su primera palabra fue papá a los %d años"
+                    "LOG": "Al cumplir %d, dijo su primera palabra: Papá"
                 }
             },
             {
@@ -37,7 +37,7 @@
                     "PREFERENCE_MOM": -1,
                     "PREFERENCE_DAD": -1,
                     "SPAIN": 10,
-                    "LOG": "Su primera palabra fue ESPAÑA a los %d años"
+                    "LOG": "Al cumplir %d, dijo su primera palabra: ESPAÑA"
                 }
             }
         ]
@@ -138,7 +138,7 @@
                 "effects": {
                     "SMOKER": "Dependencia a la nicotina",
                     "HEALTH": -10,
-                    "LOG": "A los %d años, empezó a fumar para fardar delante de sus compañeras"
+                    "LOG": "A los %d años, empezó a fumar pa' hacerse el chulo"
                 }
             },
             {
@@ -362,7 +362,7 @@
             "Adulto",
             "Anciano"
         ],
-        "yearly_chance": 10,
+        "yearly_chance": 5,
         "required": {},
         "duration": 2,
         "options": [
@@ -370,7 +370,7 @@
                 "text": "Comprar boleto de lotería",
                 "required": {},
                 "effects": {
-                    "LOTTERY_TICKET": "Ticket de lotería",
+                    "LOTTERY_TICKET": "Boleto de lotería",
                     "LUDOPATHY": 1
                 }
             }
@@ -385,7 +385,7 @@
             "Adulto",
             "Anciano"
         ],
-        "yearly_chance": 30,
+        "yearly_chance": 20,
         "required": {
             "LUDOPATHY": 5
         },
@@ -467,7 +467,7 @@
             "Adulto",
             "Anciano"
         ],
-        "yearly_chance": 5,
+        "yearly_chance": 8,
         "required": {},
         "duration": 2,
         "options": [
@@ -475,6 +475,7 @@
                 "text": "¡Sí!",
                 "required": {},
                 "effects": {
+                    "HEALTH": 2,
                     "CAT": "Un gatito",
                     "LOG": "Adoptó su primer gatito a los %d años"
                 }
@@ -488,7 +489,7 @@
             "Adulto",
             "Anciano"
         ],
-        "yearly_chance": 5,
+        "yearly_chance": 3,
         "required": {
             "CAT": true
         },
@@ -498,6 +499,7 @@
                 "text": "¡Sí!",
                 "required": {},
                 "effects": {
+                    "HEALTH": 2,
                     "CAT": "Un gatito",
                     "LOG": "Adoptó otro gatito a los %d años"
                 }
@@ -506,7 +508,11 @@
     },
     {
         "text": "Tienes un examen mañana",
-        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "stages": [
+            "Niño",
+            "Adolescente",
+            "Joven Adulto"
+        ],
         "yearly_chance": 5,
         "required": {},
         "duration": 2,
@@ -521,24 +527,62 @@
             },
             {
                 "text": "Fiesta con amigos",
-                "required": {"TALK": 1},
+                "required": {
+                    "TALK": 1
+                },
                 "effects": {
                     "PARTY": 1,
-                    "LOG": "Era una persona bien fiestera. Si le decías: ¿'te vienes de fiesta'? siempre contestaba: la que te va a dar esta con el cubata ya en la mano"
+                    "LOG": "Era una persona bien fiestera. Si le decías: '¿te vienes de fiesta?' siempre contestaba: 'la que te va a dar esta' con el cubata ya en la mano"
                 }
             }
         ]
     },
     {
+        "text": "Esta semana es el salón del manga",
+        "stages": [
+            "Niño",
+            "Adolescente",
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 8,
+        "required": {},
+        "duration": 4,
+        "options": [
+            {
+                "text": "A estrenar cosplay",
+                "required": {},
+                "effects": {
+                    "NERD": 10,
+                    "LOG": "Siempre fue un poco friki. Se vistió de Ichigo Kurosaki para su primer salón del manga con ropa y retales que compró en el mercadillo"
+                }
+            },
+            {
+                "text": "No hablo otako",
+                "required": {
+                    "TALK": 1
+                },
+                "effects": {}
+            }
+        ]
+    },
+    {
         "text": "Tienes que hacer un trabajo para la semana que viene",
-        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "stages": [
+            "Niño",
+            "Adolescente",
+            "Joven Adulto"
+        ],
         "yearly_chance": 3,
         "required": {},
         "duration": 3,
         "options": [
             {
                 "text": "Empezar One Piece",
-                "required": {"NERD": 10},
+                "required": {
+                    "NERD": 10
+                },
                 "effects": {
                     "NERD": 10,
                     "ONCE_PIECE": 1,
@@ -557,9 +601,15 @@
     },
     {
         "text": "Estas al día con One Piece, ¿Cómo rellenarás tu tiempo ahora?",
-        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "stages": [
+            "Niño",
+            "Adolescente",
+            "Joven Adulto"
+        ],
         "yearly_chance": 3,
-        "required": {"ONE_PIECE": 1},
+        "required": {
+            "ONE_PIECE": 1
+        },
         "duration": 3,
         "options": [
             {
@@ -583,7 +633,11 @@
     },
     {
         "text": "Puedes copiar en el examen",
-        "stages": ["Niño", "Adolescente", "Joven Adulto"],
+        "stages": [
+            "Niño",
+            "Adolescente",
+            "Joven Adulto"
+        ],
         "yearly_chance": 10,
         "required": {},
         "duration": 2,
@@ -594,16 +648,229 @@
                 "effects": {
                     "CHEAT": 1,
                     "STUDY_HARD": -10,
-                    "LOG": "Cuando tenía %d años, le pillaron copiando. Desde ese momento supimos que lo de estudiar no era lo suyo"
+                    "LOG": "Cuando tenía %d años, le pillaron copiando en el examen"
                 }
             },
             {
                 "text": "Confiar en tus conocimientos",
-                "required": {"STUDY_HARD": 2},
+                "required": {
+                    "STUDY_HARD": 2
+                },
                 "effects": {
                     "LOG": "Los días de estudio tuvieron resultado, siempre sacó muy buenas notas"
                 }
             }
         ]
+    },
+    {
+        "text": "Te estás quedando calvo",
+        "stages": [
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 1,
+        "required": {},
+        "duration": 7,
+        "options": {},
+        "no_response": {
+            "LOG": "A los %d años, perdió el poquito pelo que le quedaba",
+            "BALD": "Calvicie"
+        }
+    },
+    {
+        "text": "Te quedaste en paro",
+        "stages": [
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 100,
+        "required": {
+            "LOSE_JOB": 1
+        },
+        "duration": 3,
+        "options": {},
+        "no_response": {
+            "LOSE_JOB": -1,
+            "PARO": "Desempleo"
+        }
+    },
+    {
+        "text": "Se aproxima la maratón",
+        "stages": [
+            "Adulto"
+        ],
+        "yearly_chance": 5,
+        "required": {},
+        "duration": 2,
+        "options": [
+            {
+                "text": "Entrenar y participar",
+                "required": {},
+                "effects": {
+                    "FIT": 10,
+                    "LOG": "Corrió la maratón de su ciudad a los %d años. Creía que no lo conseguiría"
+                }
+            },
+            {
+                "text": "¿Correr? No gracias",
+                "required": {},
+                "effects": {
+                    "FIT": -10,
+                    "HEALTH": -10
+                }
+            },
+            {
+                "text": "Me apunto de cabeza",
+                "required": {
+                    "FIT": 10,
+                    "LOG": "Corrió la maratón de su ciudad a los %d años. Fue sobradísimo"
+                }
+            }
+        ],
+        "no_response": {
+            "FIT": -10,
+            "HEALTH": -10
+        }
+    },
+    {
+        "text": "Es hora de conseguir tu primer empleo \n ¿Dónde trabajas?",
+        "stages": [
+            "Adulto"
+        ],
+        "yearly_chance": 80,
+        "required": {},
+        "duration": 10,
+        "options": [
+            {
+                "text": "Hostelería",
+                "required": {},
+                "effects": {
+                    "JOB": 1,
+                    "WAITER": "Trabajo en hostelería",
+                    "LOG": "Consiguió su primer empleo en hostelería a los %d años"
+                }
+            },
+            {
+                "text": "Trabajo cualificado",
+                "required": {
+                    "STUDY_HARD": 2
+                },
+                "effects": {
+                    "JOB": 1,
+                    "QUALIFIED_JOB": "Trabajo en un empleo cualificado",
+                    "LOG": "Gracias a sus esfuerzos académicos, consiguió un empleo cualificado a los %d años"
+                }
+            },
+            {
+                "text": "Artista",
+                "required": {
+                    "PAINT": true
+                },
+                "effects": {
+                    "JOB": 1,
+                    "ARTIST": "Trabajo como artista",
+                    "LOG": "Usó su kit de dibujo para trabajar como artista a los %d años"
+                }
+            },
+            {
+                "text": "Repartidor",
+                "required": {
+                    "MOTO": true
+                },
+                "effects": {
+                    "JOB": 1,
+                    "DELIVERY": "Trabajo como repartidor",
+                    "LOG": "A los %d años, consiguió su primer trabajo de repartidor con su moto"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Tu jefe te pide que trabajes en tu día libre",
+        "stages": [
+            "Adulto"
+        ],
+        "yearly_chance": 2,
+        "required": {
+            "WAITER": 1
+        },
+        "duration": 5,
+        "options": [
+            {
+                "text": "Inventarte una excusa",
+                "required": {},
+                "effects": {
+                    "LOG": "Nico estaba harto de la hostelería. A menudo su jefe le pedía que trabajase sus días libres"
+                }
+            },
+            {
+                "text": "Claro, sin problema",
+                "required": {},
+                "effects": {
+                    "HEALTH": -2,
+                    "LOG": "Nico estaba harto de la hostelería. A menudo su jefe le pedía que trabajase sus días libres"
+                }
+            }
+        ],
+        "no_response": {
+            "WATER": false,
+            "LOG": "Perdió su empleo en hostelería a los %d años. Vivió el resto de su vida pobre pero lo que ganó en salud no tiene precio",
+            "LOSE_JOB": 1
+        }
+    },
+    {
+        "text": "Un cliente se está haciendo el gracioso...\n y no tienes el día para tonterías",
+        "stages": [
+            "Adulto"
+        ],
+        "yearly_chance": 2,
+        "required": {
+            "WAITER": 1
+        },
+        "duration": 3,
+        "options": [
+            {
+                "text": "Seguirle el rollo",
+                "required": {},
+                "effects": {
+                    "HEALTH": -5,
+                    "LOG": "Mientras trabajaba en hostelería, siempre intentó ser amable con los clientes, aunque no siempre le apeteciese"
+                }
+            },
+            {
+                "text": "Vacilar",
+                "required": {},
+                "effects": {
+                    "LOSE_JOB": 1,
+                    "WAITER": false,
+                    "LOG": "A los %d años, Nico perdió su empleo en hostelería al contestarle a un cliente que venía de gracioso"
+                }
+            }
+        ],
+        "no_response": {
+            "LOSE_JOB": 1,
+            "WAITER": false,
+            "LOG": "A los %d años, Nico perdió su empleo en hostelería por culpa de un cliente que se quejó a su jefe"
+        }
+    },{
+        "text": "Ha llegado la hora de Jubilarte",
+        "stages": [
+            "Anciano"
+        ],
+        "yearly_chance": 100,
+        "required": {
+            "JOB": 1
+        },
+        "duration": 3,
+        "no_response": {
+            "JOB": -1,
+            "WAITER": false,
+            "ARTIST": false,
+            "DELIVERY": false,
+            "QUALIFIED_JOB": false,
+            "RETIREMENT": "Jubilación",
+            "LOG": "A los %d años, Nico pudo por fin jubilarse"
+        }
     }
 ]

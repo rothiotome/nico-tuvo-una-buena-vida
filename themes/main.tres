@@ -10,6 +10,7 @@ default_font_size = 25
 Button/styles/hover = ExtResource("1_80dcc")
 Button/styles/normal = ExtResource("1_80dcc")
 Button/styles/pressed = ExtResource("1_80dcc")
+Label/colors/font_color = Color(0.917647, 0.901961, 0.827451, 1)
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10

@@ -8,10 +8,13 @@ class_name EventPopup
 
 @onready var window = $MarginContainer/Window
 
+var timmy
+
 var event: Dictionary
 
-func initialize(new_event):
+func initialize(new_event, timmy_ref: Timmy):
 	event = new_event
+	timmy = timmy_ref
 
 func _ready():
 	var message = message_node.instantiate() as Label
@@ -23,12 +26,12 @@ func _ready():
 		window.add_child(options)
 		for o in event["options"]:
 			var option = option_node.instantiate() as Button
-			if Timmy.has_required(o["required"]):
+			if o.has("required") and timmy.has_required(o["required"]):
 				option.set_text(o["text"])
 				options.add_child(option)
 				for n in o["effects"]:
 					option.set_meta(n, o["effects"][n])
-				option.pressed.connect(Timmy.on_response.bind(option))
+				option.pressed.connect(timmy.on_response.bind(option))
 				option.pressed.connect(queue_free)
 	if event["duration"] > 0:
 		var progress_bar = progress_bar_node.instantiate() as ProgressBar
@@ -37,5 +40,5 @@ func _ready():
 	
 func on_timeout():
 	if event.has("no_response"):
-		Timmy.on_event_not_responded(event["no_response"])
+		timmy.on_event_not_responded(event["no_response"])
 	queue_free()

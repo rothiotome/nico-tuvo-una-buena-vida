@@ -1,9 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://jef78uqqfacu"]
+[gd_scene load_steps=13 format=3 uid="uid://jef78uqqfacu"]
 
 [ext_resource type="Theme" uid="uid://d1b4h4itqfdyx" path="res://themes/main.tres" id="1_ahxfr"]
 [ext_resource type="Script" path="res://scripts/life.gd" id="2_uwmuu"]
 [ext_resource type="PackedScene" uid="uid://cdpxj2mwr38iq" path="res://nodes/panel.tscn" id="3_lbdxp"]
 [ext_resource type="PackedScene" uid="uid://dgx3gexldg4wu" path="res://nodes/item.tscn" id="4_do3nv"]
+[ext_resource type="StyleBox" uid="uid://4sxoj8ixp0c6" path="res://themes/base_button.tres" id="5_g3g2g"]
+[ext_resource type="Script" path="res://scripts/obituary.gd" id="5_udmy5"]
+[ext_resource type="Texture2D" uid="uid://8rvklphivwju" path="res://sprites/paste-clipboard.svg" id="5_wv4ne"]
+[ext_resource type="Texture2D" uid="uid://dhurh7vuwbio8" path="res://sprites/clipboard-check.svg" id="6_xn7fn"]
+[ext_resource type="Texture2D" uid="uid://dv3asj00de6se" path="res://sprites/refresh-double.svg" id="8_mb7rw"]
+[ext_resource type="Script" path="res://scripts/Timmy.gd" id="9_1e3uw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckgf2"]
+bg_color = Color(0.00784314, 0.494118, 0.772549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sokv6"]
+bg_color = Color(0.917647, 0.901961, 0.827451, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
 
 [node name="world" type="Control"]
 layout_mode = 3
@@ -13,6 +45,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ahxfr")
+
+[node name="Timmy" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_1e3uw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -90,11 +126,143 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 60
 text = "Nacer"
 
 [node name="YearTimer" type="Timer" parent="life"]
 unique_name_in_owner = true
 
+[node name="VBoxContainer" type="VBoxContainer" parent="life"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -406.0
+offset_top = -145.0
+offset_right = 406.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="life/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.917647, 0.901961, 0.827451, 1)
+theme_override_font_sizes/font_size = 60
+text = "Nico tuvo una buena vida"
+horizontal_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="life/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.917647, 0.901961, 0.827451, 1)
+bbcode_enabled = true
+text = "[right]Un juego de [color=ff666f]RothioTome[/color]
+para la [color=027ec5] mermeladaJam 2023"
+fit_content = true
+
+[node name="Obituary" type="Panel" parent="."]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ckgf2")
+script = ExtResource("5_udmy5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Obituary"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Obituary/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Obituary/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sokv6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Obituary/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Obituary/HBoxContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(1, 0.4, 0.435294, 1)
+theme_override_constants/line_separation = 10
+text = "Nico tuvo una buena vida:
+"
+scroll_following = true
+selection_enabled = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="Obituary/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Obituary/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Obituary/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Copiar al portapapeles"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Copy" type="PanelContainer" parent="Obituary/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("5_g3g2g")
+
+[node name="copy_clipboard" type="TextureButton" parent="Obituary/HBoxContainer/MarginContainer2/VBoxContainer/Copy"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_wv4ne")
+texture_pressed = ExtResource("6_xn7fn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Obituary/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Reintentar"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Retry" type="PanelContainer" parent="Obituary/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("5_g3g2g")
+
+[node name="restart" type="TextureButton" parent="Obituary/HBoxContainer/MarginContainer2/VBoxContainer/Retry"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("8_mb7rw")
+ignore_texture_size = true
+stretch_mode = 5
+
 [connection signal="pressed" from="life/Born" to="life" method="start_life"]
 [connection signal="pressed" from="life/Born" to="life/Born" method="queue_free"]
+[connection signal="pressed" from="life/Born" to="life/VBoxContainer" method="queue_free"]
 [connection signal="timeout" from="life/YearTimer" to="life" method="_on_year_timeout"]
+[connection signal="pressed" from="Obituary/HBoxContainer/MarginContainer2/VBoxContainer/Copy/copy_clipboard" to="life" method="_on_copy_clipboard_pressed"]
+[connection signal="pressed" from="Obituary/HBoxContainer/MarginContainer2/VBoxContainer/Retry/restart" to="life" method="_on_restart_pressed"]

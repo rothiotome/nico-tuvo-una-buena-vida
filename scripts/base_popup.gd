@@ -7,7 +7,7 @@ class_name BasePopup
 var dragging: bool
 var offset: Vector2
 
-func initialize(settings: Variant):
+func initialize(settings: Variant, timmy: Timmy):
 	pass
 
 func _gui_input(event):

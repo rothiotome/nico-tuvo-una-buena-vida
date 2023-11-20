@@ -1,9 +1,11 @@
 extends Node
 
+class_name Timmy
+
 var current_stage: String
 var current_age: int
 
-var life_log: PackedStringArray
+var life_log: PackedStringArray =  ["Nico tuvo una buena vida: \n"]
 
 var effects: Dictionary = {"HEALTH": 100}
 
@@ -104,4 +106,6 @@ func clear_item(id: String):
 
 func life_expectancy_reached():
 	life_log.append("Murió a la edad de %d años" % current_age)
-	print(". ".join(life_log))
+	$"../Obituary".show()
+	$"../Obituary".set_text(". ".join(life_log))
+	

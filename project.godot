@@ -10,15 +10,11 @@ config_version=5
 
 [application]
 
-config/name="The Shortness of Life"
+config/name="Nico tuvo una buena vida"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
 config/icon="res://icon.svg"
-
-[autoload]
-
-Timmy="*res://scripts/Timmy.gd"
 
 [debug]
 
@@ -27,6 +23,11 @@ gdscript/warnings/unsafe_method_access=1
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 gdscript/warnings/return_value_discarded=1
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
 
 [rendering]
 

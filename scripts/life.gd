@@ -7,6 +7,8 @@ var current_age:int = -1
 @export var popup_event_node: PackedScene
 @export var popup_item_node: PackedScene
 
+@onready var timmy: Timmy = %Timmy
+
 var life_stages_order = ["Bebé", "Niño", "Adolescente", "Joven Adulto", "Adulto", "Anciano"]
 
 var life_stage: Dictionary = {
@@ -27,17 +29,16 @@ var inventory: Dictionary = {}
 func start_life():
 	print("¡Has nacido!")
 	year_timer.start(year_duration)
-	Timmy.fire_event.connect(fire_event)
-	Timmy.add_item.connect(add_item)
-	Timmy.remove_item.connect(remove_item)
-	Timmy.die.connect(year_timer.stop)
+	timmy.fire_event.connect(fire_event)
+	timmy.add_item.connect(add_item)
+	timmy.remove_item.connect(remove_item)
+	timmy.die.connect(year_timer.stop)
 	
 func on_max_life_expectancy_reached():
-	Timmy.life_expectancy_reached()
+	timmy.life_expectancy_reached()
 
 func _on_year_timeout():
 	new_year()
-	print("Ha pasado un año. Edad %d" % current_age)
 	if current_age >= life_expectancy:
 		year_timer.stop()
 		on_max_life_expectancy_reached()
@@ -45,12 +46,9 @@ func _on_year_timeout():
 func new_year():
 	current_age = current_age + 1
 	var stage_check = check_stage_change(current_age)
-	if stage_check["just_reached"]:
-		print("Te has convertido en un %s" % stage_check["stage"])
-		
 	age_label.text = str(current_age)
 	stage_label.text = stage_check["stage"]
-	Timmy.birthday(stage_check["stage"], current_age)
+	timmy.birthday(stage_check["stage"], current_age)
 
 func get_current_stage():
 	var current_stage = "Bebé"
@@ -70,13 +68,13 @@ func check_stage_change(age: int) -> Dictionary:
 
 func fire_event(event: Dictionary):
 	var panel = popup_event_node.instantiate() as EventPopup
-	panel.initialize(event)
+	panel.initialize(event, timmy)
 	add_and_move_child(panel)
 	
 
 func add_item(id: String, desc: String):
 	var item = popup_item_node.instantiate() as ItemPopup
-	item.initialize(desc)
+	item.initialize(desc, timmy)
 	if !inventory.has(id):
 		inventory[id] = []
 	inventory[id].append(item)
@@ -90,7 +88,9 @@ func remove_item(id: String):
 	
 func add_and_move_child(node: BasePopup):
 	add_child(node)
+	node.hide()
 	await get_tree().process_frame
+	node.show()
 	var node_size = node.get_size()
 	var screen_size = get_viewport().get_visible_rect().size
 	randomize()
@@ -98,3 +98,10 @@ func add_and_move_child(node: BasePopup):
 		floorf(randi_range(0, screen_size.x - node_size.x)),
 		floorf(randi_range(0, screen_size.y - node_size.y)))
 	node.set_position(random_position)
+
+
+func _on_copy_clipboard_pressed():
+	DisplayServer.clipboard_set(". ".join(timmy.life_log))
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()
