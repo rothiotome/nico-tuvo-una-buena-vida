@@ -5,7 +5,7 @@ var current_age: int
 
 var life_log: PackedStringArray
 
-var effects: Dictionary
+var effects: Dictionary = {"HEALTH": 100}
 
 var partner_name: String
 
@@ -16,6 +16,7 @@ var life_events: Array
 signal fire_event(event: Dictionary)
 signal add_item(id: String, desc: String)
 signal remove_item(id: String)
+signal die()
 
 func _ready():
 	life_events = load_events_from_file(events_file)
@@ -38,20 +39,24 @@ func load_events_from_file(file_path: String):
 func birthday(new_stage: String, new_age: int):
 	current_stage = new_stage
 	current_age = new_age
+	var fired_events: Array
 	for event in life_events as Array:
 		if !event["stages"].has(current_stage): continue
 		if !has_required(event["required"]): continue
 		
 		if event["yearly_chance"] < 100:
 			randomize()
-			if randi() % 100 < event["yearly_chance"]: continue
-			
+			if randi() % 10 > event["yearly_chance"]: continue
+		
 		fire_event.emit(event)
-		life_events.erase(event)
-		return
+		fired_events.append(event)
+	for e in fired_events:
+		life_events.erase(e)
+	if effects["HEALTH"] <= new_age:
+		life_expectancy_reached()
+		die.emit()
 		
 func has_required(required_effects: Dictionary) -> bool:
-	
 	for req in required_effects:
 		if !effects.has(req): return false
 		if effects[req] is float and effects[req] < required_effects[req]: return false
@@ -60,27 +65,37 @@ func has_required(required_effects: Dictionary) -> bool:
 func on_response(button_pressed: Button):
 	for effect in button_pressed.get_meta_list():
 		var value = button_pressed.get_meta(effect)
-		if value is float:
-			if effects.has(effect):
-				effects[effect] = effects[effect] + value
-			else:
-				effects[effect] = value
-		else:
-			if effect != "LOG":
-				effects[effect] = value
-				if value is bool:
-					clear_item(effect)
-				else:
-					store_item(effect, value)
-			else: life_log.append(value % current_age)
+		process_effect(effect, value)
+
+func on_event_not_responded(effects: Dictionary):
+	for effect in effects:
+		process_effect(effect, effects[effect])
 
 func store_item(id: String, desc: String):
 	add_item.emit(id, desc)
 	
+func process_effect(effect: String, value: Variant):
+	if value is float:
+			if effects.has(effect):
+				effects[effect] = effects[effect] + value
+				if effects[effect] == 0:
+					effects.erase(effect)
+			else:
+				effects[effect] = value
+	else:
+		if effect != "LOG":
+			effects[effect] = value
+			if value is bool:
+				clear_item(effect)
+			else:
+				store_item(effect, value)
+		else: life_log.append(value % current_age)
+	
 func clear_item(id: String):
+	if !effects.has(id): return
 	effects.erase(id)
 	remove_item.emit(id)
 
 func life_expectancy_reached():
-	life_log.append("Y moriste a la edad de %d años" % current_age)
+	life_log.append("Murió a la edad de %d años" % current_age)
 	print(". ".join(life_log))

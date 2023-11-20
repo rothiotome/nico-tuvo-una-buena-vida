@@ -5,7 +5,7 @@
             "Bebé",
             "Niño"
         ],
-        "yearly_chance": 20,
+        "yearly_chance": 50,
         "required": {},
         "duration": -1,
         "options": [
@@ -16,7 +16,7 @@
                     "TALK": 1,
                     "PREFERENCE_MOM": 1,
                     "PREFERENCE_DAD": -1,
-                    "LOG": "Tu primera palabra fue mamá a los %d años"
+                    "LOG": "Su primera palabra fue mamá a los %d años"
                 }
             },
             {
@@ -26,19 +26,18 @@
                     "TALK": 1,
                     "PREFERENCE_MOM": -1,
                     "PREFERENCE_DAD": 1,
-
-                    "LOG": "Tu primera palabra fue papá a los %d años"
+                    "LOG": "Su primera palabra fue papá a los %d años"
                 }
             },
             {
-                "text": "M... ¡ESPAÑA!",
+                "text": "¡ESPAÑA!",
                 "required": {},
                 "effects": {
                     "TALK": 1,
                     "PREFERENCE_MOM": -1,
                     "PREFERENCE_DAD": -1,
-                    "PREFERENCE_SPAIN": 10,
-                    "LOG": "Tu primera palabra fue ESPAÑA a los %d años"
+                    "SPAIN": 10,
+                    "LOG": "Su primera palabra fue ESPAÑA a los %d años"
                 }
             }
         ]
@@ -60,9 +59,9 @@
                 "text": "League of Legends",
                 "required": {},
                 "effects": {
+                    "PLATINUM": "Platino en el LOL",
                     "NERD": 10,
-                    "LOVE": -10,
-                    "LOG": "Aún recuerdas el día que conseguiste subir a platino aquél 14 de Febrero a los %d años"
+                    "LOG": "Siempre recordaba con orgullo el día que subió a platino aquél 14 de Febrero a los %d años"
                 }
             },
             {
@@ -70,9 +69,8 @@
                 "required": {},
                 "effects": {
                     "BOYFRIEND": 1,
-                    "LOVE": 1,
                     "PARTNER": "Tu novio Carlos",
-                    "LOG": "Aún recuerdas el día tan romántico que pasaste con Carlos a los %d años"
+                    "LOG": "Encontró el amor gracias a Carlos a los %d años"
                 }
             },
             {
@@ -80,9 +78,8 @@
                 "required": {},
                 "effects": {
                     "GIRLFRIEND": 1,
-                    "LOVE": 1,
                     "PARTNER": "Tu novia María",
-                    "LOG": "Aún recuerdas el día tan romántico que pasaste con María a los %d años"
+                    "LOG": "Encontró el amor gracias a María a los %d años"
                 }
             }
         ]
@@ -92,7 +89,7 @@
         "stages": [
             "Adolescente"
         ],
-        "yearly_chance": 30,
+        "yearly_chance": 10,
         "required": {},
         "duration": 2,
         "options": [
@@ -101,7 +98,7 @@
                 "required": {},
                 "effects": {
                     "MOTO": "Una moto",
-                    "LOG": "Te regalaron una moto a los %d años"
+                    "LOG": "Le regalaron una moto a los %d años"
                 }
             },
             {
@@ -109,18 +106,18 @@
                 "required": {},
                 "effects": {
                     "PAINT": "Un Kit de dibujo",
-                    "LOG": "Te regalaron un kit de dibujo a los %d años"
+                    "LOG": "Comenzó su interés por el dibujo a los %d años"
                 }
             },
             {
                 "text": "Una bandera de ESPAÑA",
                 "required": {
-                    "PREFERENCE_SPAIN": 10
+                    "SPAIN": 10
                 },
                 "effects": {
-                    "PREFERENCE_SPAIN": 10,
+                    "SPAIN": 10,
                     "SPAIN_FLAG": "Una bandera de ESPAÑA",
-                    "LOG": "Decoraste tu habitación con una bandera de ESPAÑA a los %d años"
+                    "LOG": "Colgó en su habitación una bandera de ESPAÑA a los %d años"
                 }
             }
         ]
@@ -128,9 +125,10 @@
     {
         "text": "Te ofrecen un cigarro",
         "stages": [
-            "Adolescente", "Joven Adulto"
+            "Adolescente",
+            "Joven Adulto"
         ],
-        "yearly_chance": 10,
+        "yearly_chance": 15,
         "required": {},
         "duration": 3,
         "options": [
@@ -138,9 +136,9 @@
                 "text": "Aceptas",
                 "required": {},
                 "effects": {
-                    "FUMADOR": "Dependencia a la nicotina",
+                    "SMOKER": "Dependencia a la nicotina",
                     "HEALTH": -10,
-                    "LOG": "A los %d años, empezaste a fumar para fardar delante de tus compañeras"
+                    "LOG": "A los %d años, empezó a fumar para fardar delante de tus compañeras"
                 }
             },
             {
@@ -155,19 +153,23 @@
     {
         "text": "El médico te dice que deberías dejar de fumar",
         "stages": [
-            "Joven Adulto", "Adulto", "Anciano"
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
         ],
         "yearly_chance": 5,
-        "required": {"FUMADOR": 1},
+        "required": {
+            "SMOKER": 1
+        },
         "duration": 4,
         "options": [
             {
                 "text": "Dejar de fumar",
                 "required": {},
                 "effects": {
-                    "FUMADOR": false,
+                    "SMOKER": false,
                     "HEALTH": 5,
-                    "LOG": "Dejaste de fumar a los %d años por recomendación de tu médico"
+                    "LOG": "Dejó de fumar a los %d años por recomendación de su médico"
                 }
             },
             {
@@ -177,44 +179,177 @@
                     "HEALTH": -10
                 }
             }
-        ]
+        ],
+        "no_response": {
+            "HEALTH": -10
+        }
     },
     {
-        "text": "Recibes un mensaje: \"tenemos que hablar\"",
+        "text": "Recibes un mensaje de tu pareja: \"tenemos que hablar\"",
         "stages": [
             "Joven Adulto"
         ],
-        "yearly_chance": 10,
-        "required": {"PARTNER": 1},
+        "yearly_chance": 70,
+        "required": {
+            "PARTNER": 1
+        },
         "duration": 4,
         "options": [
-            {
-                "text": "Ignorar el mensaje",
-                "required": {},
-                "effects": {
-                    "PARTNER": false,
-                    "LOG": "Tu primer romance terminó a los %d años después de ignorar su mensaje de movil. Nunca volviste a tener contacto"
-                }
-            },
             {
                 "text": "Hablar las cosas",
                 "required": {},
                 "effects": {
-                    "LOG": "Aunque tuviste problemas con tu pareja alrededor de los %d años, conseguiste arreglar las cosas"
+                    "LOG": "Aunque tuvo problemas con tu pareja al cumplir los %d, consiguió arreglar las cosas hablando"
                 }
             },
             {
-                "text": "Responder con una bandera de ESPAÑA",
+                "text": "Responder con el emote de ESPAÑA",
                 "required": {
-                    "PREFERENCE_SPAIN": 10
+                    "SPAIN": 10
                 },
                 "effects": {
-                    "PREFERENCE_SPAIN": 10,
+                    "SPAIN": 10,
                     "PARTNER": false,
-                    "LOG": "Tu pasión por ESPAÑA hizo que tu pareja te dejara a los %d años. Aún no entiendes qué hiciste mal"
+                    "LOG": "Su pasión por ESPAÑA hizo que su pareja le dejara a los %d años. Aún no se entiende qué pudo suceder"
+                }
+            }
+        ],
+        "no_response": {
+            "IGNORE_PARTNER": 1
+        }
+    },
+    {
+        "text": "Ignoraste el mensaje de tu pareja, no quiere volver a saber nada de ti",
+        "stages": [
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 100,
+        "required": {
+            "IGNORE_PARTNER": 1
+        },
+        "duration": 5,
+        "no_response": {
+            "PARTNER": false,
+            "IGNORE_PARTNER": -1,
+            "LOG": "Su primer romance terminó a los %d años después de ignorar un mensaje de movil. Nunca volvieron a tener contacto"
+        }
+    },
+    {
+        "text": "Tu pareja quiere tener un bebé",
+        "stages": [
+            "Adulto"
+        ],
+        "yearly_chance": 4,
+        "required": {
+            "PARTNER": 1
+        },
+        "duration": 6,
+        "options": [
+            {
+                "text": "Adoptar un bebé",
+                "required": {
+                    "BOYFRIEND": 1
+                },
+                "effects": {
+                    "BABY_WAITING": "Papeles de adopción"
+                }
+            },
+            {
+                "text": "A por el bebé",
+                "required": {
+                    "GIRLFIEND": 1
+                },
+                "effects": {
+                    "BABY_WAITING": "Un bebé en camino",
+                    "LOG": "Su pareja se quedó embarazada a los %d años. "
+                }
+            },
+            {
+                "text": "Negarse",
+                "required": {},
+                "effects": {
+                    "PARTNER": false,
+                    "CONFLICT_BABY": 1,
+                    "LOG": "Se quedó sin pareja a los %d años - parece que sus caminos no estaban tam alineados como pensabamos"
+                }
+            }
+        ],
+        "no_response": {
+            "CONFLICT_BABY": 1
+        }
+    },
+    {
+        "text": "Tu pareja no quiere seguir contigo",
+        "stages": [
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 100,
+        "required": {
+            "CONFLICT_BABY": 1
+        },
+        "duration": 6,
+        "no_response": {
+            "PARTNER": false,
+            "BABY_WAITING": false,
+            "CONFLICT_BABY": -1,
+            "LOG": "Se quedó sin pareja a los %d años - parece que sus caminos no estaban tam alineados como pensabamos"
+        }
+    },
+    {
+        "text": "¡Es un niño! ¿Cómo lo llamarás?",
+        "stages": [
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 2,
+        "required": {
+            "BABY_WAITING": 1
+        },
+        "duration": -1,
+        "options": [
+            {
+                "text": "Francisco",
+                "required": {
+                    "SPAIN": 20
+                },
+                "effects": {
+                    "BABY_WAITING": false,
+                    "SON": "tu hijo Francisco",
+                    "LOG": "Francisco llegó a su vida cuando tenía %d años. Qué buen nombre eligió, la verdad"
+                }
+            },
+            {
+                "text": "Luke",
+                "required": {
+                    "NERD": 10
+                },
+                "effects": {
+                    "BABY_WAITING": false,
+                    "SON": "Tu hijo Luke",
+                    "LOG": "Luke llegó a su vida cuando tenía %d años. Siempre hablaba de esos primeros años con mucho cariño: las peleas de sable laser y las maratones de la trilogía original los sábados por la noche"
+                }
+            },
+            {
+                "text": "Carlos",
+                "required": {},
+                "effects": {
+                    "BABY_WAITING": false,
+                    "SON": "Tu hijo Carlos",
+                    "LOG": "Carlos llegó a su vida cuando tenía %d años. Siempre bromeabamos preguntándole cómo se llamaba su hijo para contestar: el de los cojones largos. Yo creo que le puso el nombre a propópsito"
+                }
+            },
+            {
+                "text": "Dani",
+                "required": {},
+                "effects": {
+                    "BABY_WAITING": false,
+                    "SON": "Tu hijo Dani",
+                    "LOG": "Dani llegó a su vida cuando tenías %d años. Menudas noches de no dormir, pobrecito"
                 }
             }
         ]
     }
-
 ]

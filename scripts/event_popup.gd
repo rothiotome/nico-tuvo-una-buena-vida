@@ -18,7 +18,7 @@ func _ready():
 	message.text = (event["text"])
 	window.add_child(message)
 	
-	if !event["options"].is_empty():
+	if event.has("options") and !event["options"].is_empty():
 		var options = options_node.instantiate()
 		window.add_child(options)
 		for o in event["options"]:
@@ -36,4 +36,6 @@ func _ready():
 		progress_bar.initialize(event["duration"]).connect(on_timeout)
 	
 func on_timeout():
+	if event.has("no_response"):
+		Timmy.on_event_not_responded(event["no_response"])
 	queue_free()

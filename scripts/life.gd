@@ -30,6 +30,7 @@ func start_life():
 	Timmy.fire_event.connect(fire_event)
 	Timmy.add_item.connect(add_item)
 	Timmy.remove_item.connect(remove_item)
+	Timmy.die.connect(year_timer.stop)
 	
 func on_max_life_expectancy_reached():
 	Timmy.life_expectancy_reached()
