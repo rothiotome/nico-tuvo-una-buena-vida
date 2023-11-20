@@ -157,6 +157,7 @@
             "Adulto",
             "Anciano"
         ],
+        "sticky": true,
         "yearly_chance": 5,
         "required": {
             "SMOKER": 1
@@ -241,7 +242,7 @@
         "stages": [
             "Adulto"
         ],
-        "yearly_chance": 4,
+        "yearly_chance": 100,
         "required": {
             "PARTNER": 1
         },
@@ -253,26 +254,25 @@
                     "BOYFRIEND": 1
                 },
                 "effects": {
-                    "BABY_WAITING": "Papeles de adopción"
+                    "BABY_WAITING": "Papeles de adopción",
+                    "LOG": "Decidisteis tener un bebé a los %d años"
                 }
             },
             {
                 "text": "A por el bebé",
                 "required": {
-                    "GIRLFIEND": 1
+                    "GIRLFRIEND": 1
                 },
                 "effects": {
                     "BABY_WAITING": "Un bebé en camino",
-                    "LOG": "Su pareja se quedó embarazada a los %d años. "
+                    "LOG": "Decidisteis tener un bebé a los %d años"
                 }
             },
             {
                 "text": "Negarse",
                 "required": {},
                 "effects": {
-                    "PARTNER": false,
-                    "CONFLICT_BABY": 1,
-                    "LOG": "Se quedó sin pareja a los %d años - parece que sus caminos no estaban tam alineados como pensabamos"
+                    "CONFLICT_BABY": 1
                 }
             }
         ],
@@ -294,6 +294,8 @@
         "no_response": {
             "PARTNER": false,
             "BABY_WAITING": false,
+            "BOYFRIEND": -1,
+            "GIRLFRIEND": -1,
             "CONFLICT_BABY": -1,
             "LOG": "Se quedó sin pareja a los %d años - parece que sus caminos no estaban tam alineados como pensabamos"
         }
@@ -338,7 +340,7 @@
                 "effects": {
                     "BABY_WAITING": false,
                     "SON": "Tu hijo Carlos",
-                    "LOG": "Carlos llegó a su vida cuando tenía %d años. Siempre bromeabamos preguntándole cómo se llamaba su hijo para contestar: el de los cojones largos. Yo creo que le puso el nombre a propópsito"
+                    "LOG": "Su hijo Carlos llegó a su vida cuando tenía %d años. Siempre bromeabamos preguntándole cómo se llamaba para contestar: el de los cojones largos. Yo creo que le puso el nombre a propópsito"
                 }
             },
             {
@@ -347,7 +349,157 @@
                 "effects": {
                     "BABY_WAITING": false,
                     "SON": "Tu hijo Dani",
-                    "LOG": "Dani llegó a su vida cuando tenías %d años. Menudas noches de no dormir, pobrecito"
+                    "LOG": "Dani llegó a su vida cuando tenía %d años. Menudas noches de no dormir, pobrecito"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Hoy te sientes afortunado",
+        "stages": [
+            "Adolescente",
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 10,
+        "required": {},
+        "duration": 2,
+        "options": [
+            {
+                "text": "Comprar boleto de lotería",
+                "required": {},
+                "effects": {
+                    "LOTTERY_TICKET": "Ticket de lotería",
+                    "LUDOPATHY": 1
+                }
+            }
+        ],
+        "sticky": true
+    },
+    {
+        "text": "Tus amigos están preocupados porque juegas demasiado a la lotería",
+        "stages": [
+            "Adolescente",
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 30,
+        "required": {
+            "LUDOPATHY": 5
+        },
+        "duration": 5,
+        "options": [
+            {
+                "text": "Buscar ayuda",
+                "required": {},
+                "effects": {
+                    "LOTTERY_TICKET": false,
+                    "LOG": "Tuvo un problema con el juego, pero con ayuda lo superó a los %d años"
+                }
+            }
+        ],
+        "no_response": {
+            "HEALTH": -10,
+            "LOG": "A los %d años su problema con el juego era evidente. Sus amigos queríamos ayudarlo, pero no se dejó"
+        }
+    },
+    {
+        "text": "Tus amigos están cansado de que sigas jugando",
+        "stages": [
+            "Adolescente",
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 60,
+        "required": {
+            "LUDOPATHY": 7
+        },
+        "duration": 5,
+        "options": [],
+        "no_response": {
+            "HEALTH": -10,
+            "LOG": "A los %d años seguía jugando. Ya perdimos todo la esperanza"
+        }
+    },
+    {
+        "text": "Vas en moto y algo se cruza en tu camino",
+        "stages": [
+            "Adolescente",
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 5,
+        "required": {
+            "MOTO": "Una moto"
+        },
+        "duration": 2,
+        "options": [
+            {
+                "text": "Esquivar",
+                "required": {},
+                "effects": {
+                    "HEALTH": -5,
+                    "ACCIDENT": "Cicatrices de accidente de moto",
+                    "LOG": "Casi tuvo un accidente de moto a los %d años, pero logró esquivar a tiempo, sufriendo solo pequeñas heridas y una cicatriz bien chula"
+                }
+            },
+            {
+                "text": "Frenar",
+                "required": {},
+                "effects": {
+                    "LOG": "Casi tuvo un accidente de moto a los %d años, pero logró frenar a tiempo, sin sufrir ni una herida"
+                }
+            }
+        ],
+        "no_response": {
+            "HEALTH": -100,
+            "LOG": "Una mañana de verano, cuando conducía su moto, algo se cruzó en su camino y no pudo reaccionar a tiempo"
+        }
+    },
+    {
+        "text": "Adoptar un gatito",
+        "stages": [
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 5,
+        "required": {},
+        "duration": 2,
+        "options": [
+            {
+                "text": "¡Sí!",
+                "required": {},
+                "effects": {
+                    "CAT": "Un gatito",
+                    "LOG": "Adoptó su primer gatito a los %d años"
+                }
+            }
+        ]
+    },
+    {
+        "text": "Adoptar otro gatito",
+        "stages": [
+            "Joven Adulto",
+            "Adulto",
+            "Anciano"
+        ],
+        "yearly_chance": 5,
+        "required": {
+            "CAT": true
+        },
+        "duration": 2,
+        "options": [
+            {
+                "text": "¡Sí!",
+                "required": {},
+                "effects": {
+                    "CAT": "Un gatito",
+                    "LOG": "Adoptó otro gatito a los %d años"
                 }
             }
         ]
