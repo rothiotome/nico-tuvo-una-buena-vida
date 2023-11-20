@@ -46,10 +46,12 @@ func birthday(new_stage: String, new_age: int):
 		
 		if event["yearly_chance"] < 100:
 			randomize()
-			if randi() % 10 > event["yearly_chance"]: continue
+			if randi() % 100 > event["yearly_chance"]: continue
 		
 		fire_event.emit(event)
-		fired_events.append(event)
+		
+		if !event.has("sticky"):
+			fired_events.append(event)
 	for e in fired_events:
 		life_events.erase(e)
 	if effects["HEALTH"] <= new_age:
@@ -89,7 +91,11 @@ func process_effect(effect: String, value: Variant):
 				clear_item(effect)
 			else:
 				store_item(effect, value)
-		else: life_log.append(value % current_age)
+		else: 
+			if "%" in value:
+				life_log.append(value % current_age)
+			else:
+				life_log.append(value)
 	
 func clear_item(id: String):
 	if !effects.has(id): return

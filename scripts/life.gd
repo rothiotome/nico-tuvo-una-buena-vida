@@ -77,12 +77,16 @@ func fire_event(event: Dictionary):
 func add_item(id: String, desc: String):
 	var item = popup_item_node.instantiate() as ItemPopup
 	item.initialize(desc)
-	inventory[id] = item
+	if !inventory.has(id):
+		inventory[id] = []
+	inventory[id].append(item)
 	add_and_move_child(item)
 	
 func remove_item(id: String):
-	inventory[id].queue_free()
-	inventory.erase(id)
+	if inventory.has(id):
+		for i in inventory[id]:
+			i.queue_free()
+			inventory.erase(i)
 	
 func add_and_move_child(node: BasePopup):
 	add_child(node)
